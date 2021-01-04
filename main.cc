@@ -88,42 +88,8 @@
 
 class Solution {
 public:
-    bool chk(const int& s1, const int& s2, const int& s3){
-        if(s1<=s2 && s2<=s3)
-            return true;
-        else
-            return false;
-    }
-    int waysToSplit(vector<int>& nums) {
-        int n = nums.size();
-        int sum1(0), sum2(0), sum3(0), total(0), ans(0);
-        for(auto& n: nums)
-            total += n;
-        // cout << total << endl;
-
-        // mid range [i, j]
-        int i, j;
-        for(i=1; i<n-1; i++)
-        {
-            sum1 += nums[i-1], sum2 = nums[i], sum3 = total - sum1 - sum2;
-            if(chk(sum1, sum2, sum3)) ans++;
-            else{
-                if(sum1 > sum2);
-                else if(sum2 > sum3) continue;
-            }
+    int search(vector<int>& nums, int target) {
         
-            for(j=i+1; j<n-1;j++)
-            {
-                sum2 += nums[j], sum3 -= nums[j];
-                if(chk(sum1, sum2, sum3)) ans++;
-                else{
-                    if(sum1 > sum2);
-                    else if(sum2 > sum3) continue;
-                }
-            }
-        }
-        
-        return ans;
     }
 };
 
