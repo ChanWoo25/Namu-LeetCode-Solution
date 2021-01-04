@@ -16,4 +16,4 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
-git add . && git commit -m "$@" && git push -u origin main
+git add . && git commit -m "$@" && git push -u origin master
