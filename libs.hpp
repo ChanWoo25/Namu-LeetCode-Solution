@@ -14,3 +14,10 @@
 #include <limits>
 
 using namespace std;
+
+typedef unsigned    uint;
+typedef long        l;
+typedef long long   ll;
+typedef vector<int> vi;
+typedef vector<long> vl;
+typedef vector<long long> vll;
