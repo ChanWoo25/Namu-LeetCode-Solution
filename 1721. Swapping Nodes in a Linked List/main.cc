@@ -12,71 +12,17 @@ struct ListNode {
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        ListNode *curr = head, *kth, *k1th, *nkth, *nk1th;
-        int idx = 1, sz;
-
-        if(k==1) {
-            kth = head;
-            k1th = nullptr;
-        }
-        while(curr->next != nullptr){
-            if(idx == k-1){
-                k1th = curr;
-                kth = curr->next;
-            }
-            curr = curr->next;
-            idx++;
-        }
-        sz = idx;
-        int nk = sz - k + 1;
-        curr = head; idx = 1;
-        if(nk==1) {
-            nkth = head;
-            nk1th = nullptr;
-        }
-        while(curr->next != nullptr){
-            curr = curr->next;
-            idx++;
-            if(idx == nk-1){
-                nk1th = curr;
-                nkth = curr->next;
-            }
-        }
-
-        if(k1th == nullptr)
+        ListNode *p1, *p2(head);
+        for(auto p = head; p != nullptr; p = p->next)
         {
-            if(nk1th == nullptr)
-            {
-                return head;
+            if(--k == 0){
+                p1 = p2;
+                p2 = head;
             }
             else
-            {
-                ListNode* tmp = nkth->next;
-                nk1th->next = kth;
-                nkth->next = kth->next;
-                kth->next = tmp;
-                head = nkth;
-            }
-        }
-        else
-        {
-            if(nk1th == nullptr)
-            {
-                ListNode* tmp = kth->next;
-                k1th->next = nkth;
-                kth->next = nkth->next;
-                nkth->next = tmp;
-                head = kth;
-            }
-            else
-            {
-                nk1th->next = kth;
-                k1th->next = nkth;
-                ListNode* tmp = kth->next;
-                kth->next = nkth->next;
-                nkth->next = tmp;
-            }
-        }
+                p2 = p2->next;
+        }      
+        swap(p1->val, p2->val);
         return head;
     }
 };

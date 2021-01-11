@@ -15,6 +15,13 @@ public:
         }
         return arr;
     }
+
+    vector<int> decode_2(vector<int>& encoded, int first) {
+        vector<int> ret = {first};
+        for(const int& e : encoded)
+            ret.push_back(ret.back() ^ e);
+        return ret;
+    }
 };
 int main()
 {
