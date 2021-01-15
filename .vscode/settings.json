@@ -2,5 +2,7 @@
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
         "random": "cpp"
-    }
+    },
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, Consolas",
+    "terminal.integrated.fontFamily": "'monospace'"
 }
