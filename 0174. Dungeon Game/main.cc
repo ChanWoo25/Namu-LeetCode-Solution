@@ -20,6 +20,7 @@
  * Sol 2 : 위 풀이는 Memory Space O(MN)이 필요함. 하지만 우리가 사용하는 것은 결국 한 열 뿐임.
  * - 생각하기 조금 어렵지만, 아래 Solution2와 같은 방식으로 O(N)으로 공간복잡도를 줄일 수 있음.
  * 
+ * Sol 3 : 만약 처음에 생각했던 풀이를 잘 이어나갔으면, Solution3 같은 풀이가 나왔을 것.
 */
 class Solution1 {
 private:
@@ -67,6 +68,32 @@ public:
     }   
 };
 
+
+class Solution3
+{
+private:
+    vector<int> DP;
+    int m, n;
+public:
+    int calculateMinimumHP(vector<vector<int>>& dungeon) {
+        if(dungeon.empty()) 
+            return -1;
+        m = dungeon.size(), n = dungeon[0].size();
+        DP.assign(n+1, INT32_MIN);
+        DP[n-1] = 0;
+
+        for(int r = m-1; r >= 0; r--)
+            for(int c = n-1; c >= 0; c--){
+                // Calculate less damage cell.So that we got finally minimum HP needed.
+                int maxDamage = max(DP[c], DP[c+1]) + dungeon[r][c];
+
+                // If maxDamage is less than 0, don't need any HP from this cell. 
+                // So Initialize to 0 again.
+                DP[c] = min(0, maxDamage);
+            }
+        return (-DP[0] + 1);
+    }   
+};
 
 int main()
 {
