@@ -3,7 +3,8 @@
     "files.associations": {
         "random": "cpp",
         "unordered_map": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "ostream": "cpp"
     },
     "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, Consolas",
     "terminal.integrated.fontFamily": "'monospace'"
