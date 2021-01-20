@@ -17,9 +17,12 @@
    1. if nums size is 0, there's no sub-array.
    2. if `sums[n]`(=all elements' sum) is less than s, there is no sub-array.
 
-#### try22 (+ Binary Search)
+#### try2 (+ Binary Search)
 1. 처음 $sum \geq s$를 만족하는 최소 길이를 찾을 때 Binary Search를 활용할 수 있다.
 2. 또한 p2를 늘려갈 때마다 p1을 찾아야 하는데, 이 과정 또한  BS로 구현할 수 있다. 만약의 배열의 크기가 커지면 도움이 될 것.
+
+#### try3 (NO Sums array for O(1) Space complexity and O(N) Time) 
+- 결과적으로 제일 빨랐다. **N개의 Sum Array를 만들 필요가 없는 부분**에서 부터 차이가 많이 벌어질 듯 하다.
 
 ```cpp
 class Solution1 {
@@ -102,6 +105,21 @@ public:
         } while(++p2 <= n);
 
         return minLen;
+    }
+};
+
+class Solution3 {
+public:
+    int minSubArrayLen(int s, vector<int>& A) {
+        int i = 0, n = A.size(), res = n + 1;
+        for (int j = 0; j < n; ++j) {
+            s -= A[j];
+            while (s <= 0) {
+                res = min(res, j - i + 1);
+                s += A[i++];
+            }
+        }
+        return res % (n + 1);
     }
 };
 ```
