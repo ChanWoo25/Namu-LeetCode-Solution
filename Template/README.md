@@ -1,18 +1,24 @@
-### 
+## 
 
->Time Complexity : $O(N)$ \
->Space Complexity : $O(1)$
+### Description
 
-**Description**
 
-#### Try
+#### Note:
+1. 
+#### Follow-Up:
+2. 
+### Try
 - 
+> Time Complexity : $O(N)$\
+  Space Complexity : $O(1)$
 ```cpp
 
 ```
 
-#### Try
+### Try
 - 
+> Time Complexity : $O(N)$\
+  Space Complexity : $O(1)$
 ```cpp
 
 ```
