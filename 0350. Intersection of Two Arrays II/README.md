@@ -33,8 +33,8 @@ The result can be in any order.
 ### Try 1
 - 349번을 hash_map을 사용하여 해결했듯이, 마찬가지로 임의의 Key값에 대해서 Constant average time으로 접근할 수 있는 unordered_map을 사용하여 해결하였다.
 
->   Time Complexity : $O(n1 + n2)$ \
-    Space Complexity : $O(min(n1, n2))$
+>   Time Complexity : O(n1 + n2) \
+    Space Complexity : O(min(n1, n2))
 
 > **Runtime**: 4 ms, faster than 97.26% of C++ online submissions for Intersection of Two Arrays II. \
 **Memory Usage**: 10.4 MB, less than 88.86% of C++ online submissions for Intersection of Two Arrays II.
@@ -77,8 +77,8 @@ public:
 - 이 접근법의 경우, 시간 복잡도는 Sorting에 Dominant하다.
 - Try1에 비해 시간이 더 걸리지만, **Space Complexity를 확연히 절감**할 수 있다는 장점이 있다.
 - Follow-Up 1번의 경우, 아래 코드의 첫 두줄을 소거함으로써 이 알고리즘의 큰 비중을 차지하는 Sorting을 제거할 수 있게 된다. 이는 훨씬 뛰어난 수행속도를 내게 하며, 주어진 문제에 가장 Optimal한 풀이라고 할 수 있다.
-> Time Complexity : $O(n_{1}lgn_{1} + n_{2}lgn_{2})$\
-  Space Complexity : $O(1)$
+> Time Complexity : O(nlgn + mlgm)\
+  Space Complexity : O(1)
 ```cpp
 class Solution {
 public:
