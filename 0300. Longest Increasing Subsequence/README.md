@@ -8,20 +8,21 @@ A subsequence is a sequence that can be derived from an array by deleting some o
 #### Note:
 1. 
 #### Follow-Up:
-2. 
-### Try 1
-- 가장 빨리 떠오르는 풀이는 `Dynamic Programming`
-- 하지만 DP 이중배열의 원소로 최대 길이 뿐만 아니라 최소, 최대값까지 저장해야 함.
-> Time Complexity : O(N)\
-  Space Complexity : O(1)
-```cpp
+1. 
 
-```
-
-### Try
-- 
-> Time Complexity : O(N)\
-  Space Complexity : O(1)
+### Ref (Dynamic Programming with Binary Search)
+- [**Very Helpful Article**](https://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/)
+- 위 Article을 참고했을 때, `ans`는 각 **Active Lists**의 **End element**를 가지고 있는 Vector로 볼 수 있다.
+- 우리의 목적은 완전한 Longest Increasing Subsequence(LIS)를 찾는 것이 아니기 때문에 End element만을 가지고 최대 length를 구한다.
+- **Main strategy**
+  1. If `nums[i]` is smallest among all end candidates of active lists, we will start new active list of length 1.
+  2. If `nums[i]` is largest among all end candidates of active lists, we will clone the largest active list, and extend it by `nums[i]`.
+  3. If `nums[i]` is in between, we will find a list with largest end element that is smaller than `nums[i]`. Clone and extend this list by `nums[i]`. We will discard all other lists of same length as that of this modified list.
+> Time Complexity : O(NlgN)\
+  Space Complexity : O(N) for `ans`
+  
+> Runtime: 8 ms \
+  Memory Usage: 10.5 MB
 ```cpp
 class Solution {
 public:
@@ -30,7 +31,7 @@ public:
         vector<int> ans;
 
         for(int i=0; i<n; i++)
-        {
+        {   // Binary Search
             // Sorted array인 ans 안에서 
             // nums[i] 보다 크거나 같은 첫번째 원소를 찾는다.
             auto it = lower_bound(ans.begin(), ans.end(), nums[i]);
@@ -50,6 +51,34 @@ public:
         }
 
         return ans.size();
+    }
+};
+```
+
+### Ref 2 (only DP)
+- 배열을 따로 관리하지는 않지만, `nums`의 원소를 비교해가며 해당 인덱스에서 최대 Length를 구하는 DP풀이
+> Runtime: 388 ms, faster than 12.67% \
+Memory Usage: 10.7 MB, less than 67.51% 
+```cpp
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size(), ans(1);
+        vector<int> DP(n, 0);
+        
+        DP[0] = 1;
+        for(int i=1; i<n; i++)
+        {
+            int maxLen(0);
+            for(int j=0; j<i; j++)
+            {
+                if(nums[j] < nums[i])
+                    maxLen = (maxLen>DP[j])?maxLen:DP[j];
+            }
+            DP[i] = maxLen + 1;
+            ans = (ans>DP[i])?ans:DP[i];
+        }
+        return ans;
     }
 };
 ```
