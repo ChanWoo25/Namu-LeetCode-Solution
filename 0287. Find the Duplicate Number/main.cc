@@ -21,7 +21,6 @@
 class Solution {
 public:
     // 287. Find the Duplicate Number
-    // 将数字x交换到索引位置x的地方，每次都可以安顿好一个数字，最后那个无法安顿的就是重复的（只有一个）
     int findDuplicate(vector<int>& A) {
         int n = A.size();
 
