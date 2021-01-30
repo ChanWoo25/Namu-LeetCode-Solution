@@ -20,7 +20,7 @@ A subsequence is a sequence that can be derived from an array by deleting some o
   3. If `nums[i]` is in between, we will find a list with largest end element that is smaller than `nums[i]`. Clone and extend this list by `nums[i]`. We will discard all other lists of same length as that of this modified list.
 > Time Complexity : O(NlgN)\
   Space Complexity : O(N) for `ans`
-  
+
 > Runtime: 8 ms \
   Memory Usage: 10.5 MB
 ```cpp
@@ -28,7 +28,7 @@ class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
-        vector<int> ans;
+        vector<int> ans, prev;
 
         for(int i=0; i<n; i++)
         {   // Binary Search
@@ -39,7 +39,10 @@ public:
             // 만약 찾지 못했다면, it는 검사된 elem중 가장 큰 원소이므로 ans에 포함될 자격이 있다.
             // 고로 끝에 집어넣는다.
             if(it == ans.end())
+            {
                 ans.push_back(nums[i]);
+                prev.
+            }
             // 만약 *it와 nums[i] 같다면 달라지는 것은 아무것도 없다.
             // 눈여겨 볼 것은 *it가 nums[i]보다 클 때이다.
             // 설령 nums[i]가 최종 LIS에 포함되지 않더라도 *it자리에 
@@ -53,6 +56,51 @@ public:
         return ans.size();
     }
 };
+```
+
+- Get LIS version
+- Time complexity O(NlgN)
+- Space(3N) for `tail, prev, stk` each takes N
+```cpp
+int getLIS(vector<int>& nums)
+{
+    vector<int> tail;
+    vector<int> prev(nums.size());
+    int last = -1;
+    for(int i=0; i<nums.size(); i++)
+    {
+        auto it = lower_bound(tail.begin(), tail.end(), nums[i], \
+            [&nums](int x, int y){
+                return nums[x] < y;
+            });
+        if(it == tail.end())
+        {
+            prev[i] = (tail.empty()) ? (-1) : tail.back();
+            last = i;
+            tail.push_back(i);
+        }
+        else
+        {
+            prev[i] = (it == tail.begin()) ? (-1) : *(it-1);
+            *it = i;
+        }
+    }
+
+    stack<int> stk; // Last In, First Out
+    while(last != -1)
+    {
+        stk.push(nums[last]);
+        last = prev[last];
+    }
+
+    while(!stk.empty())
+    {
+        cout << stk.top() << " ";
+        stk.pop();
+    }   cout << endl;
+
+    return tail.size();
+}
 ```
 
 ### Ref 2 (only DP)
