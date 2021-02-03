@@ -1,5 +1,7 @@
 #! /bin/bash
 
 cmake -B build -S .
-cmake --build build -t main
-./build/main
+cd build
+make 
+./main
+cd ..

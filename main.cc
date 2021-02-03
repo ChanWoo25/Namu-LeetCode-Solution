@@ -86,6 +86,9 @@
 //     }
 // };
 
+#include "SegmentTree.hpp"
+using namespace std;
+
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
@@ -95,6 +98,18 @@ public:
 
 int main()
 {
+    std::vector<int> arr{1, 3, 5, 7, 9, 11};
+    SegmentTree<int> ST(arr);
+    ST.print();
+
+    cout << ST.Query({1, 3}) << endl;
+    cout << ST.Query({0, 4}) << endl;
+    int i=2, diff = -2;
+    arr[i] += diff;
+    ST.Update(i, diff);
+    cout << ST.Query({1, 3}) << endl;
+    cout << ST.Query({0, 4}) << endl;
+
 
     Solution S;
     return 0;
