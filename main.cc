@@ -102,13 +102,13 @@ int main()
     SegmentTree<int> ST(arr);
     ST.print();
 
-    cout << ST.Query({1, 3}) << endl;
-    cout << ST.Query({0, 4}) << endl;
+    cout << ST.Query(1, 3) << endl;
+    cout << ST.Query(0, 4) << endl;
     int i=2, diff = -2;
     arr[i] += diff;
     ST.Update(i, diff);
-    cout << ST.Query({1, 3}) << endl;
-    cout << ST.Query({0, 4}) << endl;
+    cout << ST.Query(1, 3) << endl;
+    cout << ST.Query(0, 4) << endl;
 
 
     Solution S;

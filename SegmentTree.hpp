@@ -18,12 +18,12 @@ public:
         Construct(arr); 
     }
 
-    T Query(const pii& q)
+    T Query(int s, int e)
     {
-        if(q.first < 0 || q.second >= N || q.first > q.second)
+        if(s < 0 || e >= N || s > e)
             std::perror("Unvalid Query");
 
-        return QueryUtil(std::make_pair(0, N-1), q, 0);
+        return QueryUtil(std::make_pair(0, N-1), std::make_pair(s, e), 0);
     }
 
     void Update(const int &i, const T &diff) 
