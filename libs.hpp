@@ -22,3 +22,10 @@ typedef long long   ll;
 typedef vector<int> vi;
 typedef vector<long> vl;
 typedef vector<long long> vll;
+
+template<typename T>
+void print(const vector<T>& arr){
+    for(auto& x: arr)
+        cout << x << ' ';
+    cout << endl; return;
+}

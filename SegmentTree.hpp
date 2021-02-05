@@ -54,7 +54,7 @@ private:
     int N,      // the size of original array.
         H;      // Height of Segment tree.
 
-    int midIndexOf(const int &s, const int &e) const {
+    static int midIndexOf(const int &s, const int &e) const {
         return s + (e - s)/2;
     }
 
