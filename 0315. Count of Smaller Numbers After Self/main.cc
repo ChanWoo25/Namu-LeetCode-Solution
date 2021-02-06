@@ -33,7 +33,7 @@ private:
 
         int m = s + (e-s)/2;
         int ret = Query(s, m, qs, qe, 2*ti) + Query(m+1, e, qs, qe, 2*ti+1);
-        //cout << "Query: s(" << s << ") e(" << e << ") qs(" << qs << ") qe(" << qe << ") ret(" << ret << ")\n";
+        // cout << "Query: s(" << s << ") e(" << e << ") qs(" << qs << ") qe(" << qe << ") ret(" << ret << ")\n";
         return ret;
     }
 
