@@ -85,32 +85,32 @@
 //         return ret;
 //     }
 // };
-
-#include "SegmentTree.hpp"
+#include "Dijkstra Algorithm using STL.hpp"
 using namespace std;
-
-class Solution {
-public:
-    int search(vector<int>& nums, int target) {
-        
-    }
-};
 
 int main()
 {
-    std::vector<int> arr{1, 3, 5, 7, 9, 11};
-    SegmentTree<int> ST(arr);
-    ST.print();
+	// create the graph given in above fugure
+	int V = 9;
+	Dijkstra g(V);
 
-    cout << ST.Query(1, 3) << endl;
-    cout << ST.Query(0, 4) << endl;
-    int i=2, diff = -2;
-    arr[i] += diff;
-    ST.Update(i, diff);
-    cout << ST.Query(1, 3) << endl;
-    cout << ST.Query(0, 4) << endl;
+	// making above shown graph
+	g.addEdge(0, 1, 4);
+	g.addEdge(0, 7, 8);
+	g.addEdge(1, 2, 8);
+	g.addEdge(1, 7, 11);
+	g.addEdge(2, 3, 7);
+	g.addEdge(2, 8, 2);
+	g.addEdge(2, 5, 4);
+	g.addEdge(3, 4, 9);
+	g.addEdge(3, 5, 14);
+	g.addEdge(4, 5, 10);
+	g.addEdge(5, 6, 2);
+	g.addEdge(6, 7, 1);
+	g.addEdge(6, 8, 6);
+	g.addEdge(7, 8, 7);
 
+	g.shortestPath(0);
 
-    Solution S;
     return 0;
 }
